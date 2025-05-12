@@ -1,49 +1,116 @@
-# Ejercicios: Modulo 1 - Clase 3
+# Ejercicios: Módulo 1 - Clase 3
 
-Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase
+Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase. Los mismos contienen un fragmento de codigo sin el uso del tema en cuestión y deben ser modificados para usarlo.
 
-1. Crea un método que reciba un código HTTP (int) y devuelva una descripción textual usando switch como expresión. 
-   
-   Ejemplo:
-   - `200 → "OK"`
-   - `404 → "No encontrado"`
-   - `500 → "Error interno del servidor"`
-   - Otro → `"Código desconocido"`
 
-2. Crea un método que reciba un String con el nombre de un día y devuelva "Laboral" o "No laboral" usando switch.
+## **Ejercicio 1: Categorizar la aerolínea por nombre (`SegmentDTO.getCarrier()`)**
 
-   Ejemplo:
-   -  `"lunes"` a `"viernes"` → `"Laboral"`
-   - `"sábado"`, `"domingo"` → `"No laboral"`
 
-3. Crea un método que reciba una edad (`int`) y devuelva el precio de entrada basado en rangos definidos con `switch`.
+```java
+public String categoriaAereolinea(SegmentDTO segmento) {
+    if (segmento == null || segmento.getCarrier() == null) return "Desconocida";
+    String carrier = segmento.getCarrier();
+    switch (carrier) {
+        case "AR": return "Aerolíneas Argentinas";
+        case "LA": return "Latam";
+        case "G3": return "Gol";
+        default: return "Otra";
+    }
+}
+```
 
-   Ejemplo:
-   - Menor de 12 → `5.0`
-   - Entre 13 y 18 → `7.5`
-   - Adultos → `10.0`
+---
 
-4. Crea un método que reciba el nombre de una operación (`String`) y devuelva el símbolo asociado.
+## **Ejercicio 2: Clasificar cantidad de pasajeros en la reserva**
 
-   Ejemplo:
-    - `"suma" → "+"`
-    - `"resta" → "-"`
-    - `"multiplicacion" → "*"`
-    - `"division" → "/"`
 
-5. Crea un método que reciba una extensión (`String`, sin el punto) y devuelva el tipo de archivo.
+```java
+public String clasificarReservaPorPasajeros(ReservationDTO reserva) {
+    if (reserva == null || reserva.getPassengers() == null) return "Vacía";
+    int cantidad = reserva.getPassengers().size();
+    switch (cantidad) {
+        case 0: return "Vacía";
+        case 1: return "Individual";
+        case 2: return "Doble";
+        default: return "Grupo";
+    }
+}
+```
+---
 
-   Ejemplo:
-    - `"jpg", "png" → "Imagen"`
-    - `"mp4", "avi" → "Video"`
-    - `"doc", "pdf" → "Documento"`
-    - otro → `"Desconocido"`
+## **Ejercicio 3: Calcular zona de destino del primer segmento**
 
-6. Crea un método que reciba un número entero entre 0 y 10 y devuelva una calificación en letras.
 
-   Ejemplo:
-   - 10 → `"A"`
-   - 8–9 → `"B"`
-   - 6–7 → `"C"`
-   - 4–5 → `"D"`
-   - 0–3 → `"F"`
+```java
+public String zonaDestino(ItineraryDTO itinerario) {
+    if (itinerario == null || itinerario.getSegment() == null || itinerario.getSegment().isEmpty()) return "Desconocida";
+    String destino = itinerario.getSegment().get(0).getDestination();
+    switch (destino) {
+        case "EZE": return "Argentina";
+        case "SCL": return "Chile";
+        case "GRU": return "Brasil";
+        default: return "Internacional";
+    }
+}
+```
+---
+
+## **Ejercicio 4: Categorizar horario de salida (`SegmentDTO.getDeparture()`)**
+
+```java
+public String clasificarHorarioSalida(SegmentDTO segmento) {
+    if (segmento == null || segmento.getDeparture() == null) return "Sin horario";
+    String hora = segmento.getDeparture().substring(0, 2);
+    switch (hora) {
+        case "06": case "07": case "08": return "Mañana";
+        case "12": case "13": case "14": return "Mediodía";
+        case "18": case "19": case "20": return "Tarde";
+        default: return "Otro";
+    }
+}
+```
+
+---
+
+## **Ejercicio 5: Categorizar tipo de documento (`PassengerDTO.getDocumentType()`)**
+
+
+```java
+public String categoriaDocumento(PassengerDTO pasajero) {
+    if (pasajero == null || pasajero.getDocumentType() == null) return "ND";
+    switch (pasajero.getDocumentType()) {
+        case "DNI": return "Nacional";
+        case "PAS": return "Internacional";
+        default: return "Otro";
+    }
+}
+```
+
+---
+
+## **Ejercicio 6: Clasificar precio total (`PriceDTO.getTotalPrice()`)**
+
+```java
+public String clasificarPrecio(PriceDTO precio) {
+    if (precio == null || precio.getTotalPrice() == null) return "ND";
+    BigDecimal valor = precio.getTotalPrice();
+    switch (valor.intValue()) {
+        case 0 -> { return "Gratis"; }
+        case 1, 2, 3 -> { return "Muy económico"; }
+        default -> { return "Con costo"; }
+    }
+}
+```
+
+---
+
+## **Ejercicio 7: Tipo de trayecto según origen y destino (`SegmentDTO`)**
+
+```java
+public String tipoTrayecto(SegmentDTO segmento) {
+    if (segmento == null || segmento.getOrigin() == null || segmento.getDestination() == null) return "Desconocido";
+    if (segmento.getOrigin().equals(segmento.getDestination())) return "Local";
+    return "Nacional o Internacional";
+}
+```
+---

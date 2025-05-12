@@ -1,3 +1,3 @@
-# Ejercicios: Modulo 2 - Clase 1
+# Ejercicios: Módulo 2 - Clase 1
 
-Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase
+Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase. Los mismos contienen un fragmento de codigo sin el uso del tema en cuestión y deben ser modificados para usarlo.

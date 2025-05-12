@@ -1,10 +1,83 @@
-# Ejercicios: Modulo 1 - Clase 4
+# Ejercicios: Módulo 1 - Clase 4
 
-Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase
+Aqui encontraras una serie de ejercicios para poder practicar los conceptos relacionados con esta clase. Los mismos contienen un fragmento de codigo sin el uso del tema en cuestión y deben ser modificados para usarlo.
 
-1. Crea un método que reciba nombre y edad, y retorne un JSON como Text Block utilizando .formatted() para insertar valores.
-2. Crea un método que retorne un texto multilínea bien identado y luego lo procese con .stripIndent().
-3. Crea un método que reciba id y nombre, y genere un fragmento de XML con Text Block, usando .formatted().
-4. Crea un método que retorne un Text Block que contenga secuencias escapadas (\\n, \\t, etc), y luego las convierta con .translateEscapes().
-5. Crea un método que reciba String titulo y String cuerpo, y devuelva un bloque HTML usando .formatted() con un Text Block.
-6. Crea un método que devuelva un reporte de ventas con cabecera, varias líneas de datos, y elimine indentación con .stripIndent().
+## **Ejercicio 1: Mostrar información básica de un pasajero con `formatted`**
+
+
+```java
+public String resumenPasajero(PassengerDTO p) {
+    return "Nombre: " + p.getFirstName() + "\n" +
+           "Apellido: " + p.getLastName() + "\n" +
+           "Documento: " + p.getDocumentNumber();
+}
+```
+
+---
+
+## **Ejercicio 2: Resumen de reserva con `stripIndent()`**
+
+
+```java
+public String resumenReserva(ReservationDTO r) {
+    return "Reserva:\n" +
+           "  ID: " + r.getReservationId() + "\n" +
+           "  Fecha: " + r.getCreationDate();
+}
+```
+
+---
+
+## **Ejercicio 3: Ruta de vuelo con `formatted`**
+
+
+```java
+public String rutaVuelo(SegmentDTO s) {
+    return "Vuelo de " + s.getOrigin() + " a " + s.getDestination();
+}
+```
+
+---
+
+## **Ejercicio 4: Tabla de precios con `stripIndent()`**
+
+```java
+public String tablaPrecios(PriceDTO p) {
+    return "Precios:\n" +
+           "  Base: " + p.getBasePrice() + "\n" +
+           "  Total: " + p.getTotalPrice();
+}
+```
+---
+
+##  **Ejercicio 5: Mensaje con `translateEscapes()`**
+
+
+```java
+public String mensajeConSaltos() {
+    return "Línea 1\\nLínea 2\\nLínea 3";
+}
+```
+
+---
+
+## **Ejercicio 6: Mensaje multilínea con tabulaciones (`translateEscapes()`)**
+
+
+```java
+public String mensajeTabulado() {
+    return "ID\\tNombre\\tApellido";
+}
+```
+---
+
+## **Ejercicio 7: Mensaje dinámico para error con `formatted()`**
+
+
+```java
+public String errorSegmento(String campo) {
+    return "Error: el campo '" + campo + "' no puede ser nulo.";
+}
+```
+
+---
