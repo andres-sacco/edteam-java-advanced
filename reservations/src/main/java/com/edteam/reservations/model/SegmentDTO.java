@@ -16,6 +16,8 @@ public class SegmentDTO {
 
     private String carrier;
 
+    private String type;
+
     public String getOrigin() {
         return origin;
     }
@@ -64,6 +66,14 @@ public class SegmentDTO {
         this.id = id;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "SegmentDTO{" +
@@ -73,6 +83,7 @@ public class SegmentDTO {
                 ", departure='" + departure + '\'' +
                 ", arrival='" + arrival + '\'' +
                 ", carrier='" + carrier + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 
@@ -80,11 +91,11 @@ public class SegmentDTO {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         SegmentDTO that = (SegmentDTO) o;
-        return Objects.equals(id, that.id) && Objects.equals(origin, that.origin) && Objects.equals(destination, that.destination) && Objects.equals(departure, that.departure) && Objects.equals(arrival, that.arrival) && Objects.equals(carrier, that.carrier);
+        return Objects.equals(id, that.id) && Objects.equals(origin, that.origin) && Objects.equals(destination, that.destination) && Objects.equals(departure, that.departure) && Objects.equals(arrival, that.arrival) && Objects.equals(carrier, that.carrier) && Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, origin, destination, departure, arrival, carrier);
+        return Objects.hash(id, origin, destination, departure, arrival, carrier, type);
     }
 }

@@ -69,6 +69,7 @@ public class DataFakerUtil {
         for (int i = 0; i < count; i++) {
             SegmentDTO segment = new SegmentDTO();
             segment.setId(faker.number().randomNumber());
+            segment.setType(faker.options().option("IDA", "VUELTA"));
             segment.setDeparture(LocalDate.now().plusDays(faker.number().numberBetween(1, 30)).toString());
             segment.setArrival(LocalDate.now().plusDays(faker.number().numberBetween(1, 30)).toString());
             segment.setOrigin(faker.address().city());
