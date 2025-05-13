@@ -1,4 +1,4 @@
-# Curso: JJava Avanzado: Evolución y Mejoras del Lenguaje
+# Curso: Java Avanzado: Evolución y Mejoras del Lenguaje
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
