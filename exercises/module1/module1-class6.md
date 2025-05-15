@@ -12,7 +12,7 @@ public class PassengerDTO {
     public void setEmail(String email) { this.email = email; }
 }
 ```
-
+------
 ## **Ejercicio 2: `Documento` como Value Class (document type y number en uno)**
 
 ```java
