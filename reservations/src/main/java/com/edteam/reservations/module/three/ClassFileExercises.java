@@ -1,8 +1,45 @@
 package com.edteam.reservations.module.three;
 
+import java.io.IOException;
+import java.lang.classfile.ClassFile;
 import java.lang.classfile.ClassModel;
-import java.nio.file.*;
+import java.nio.file.Path;
+import java.lang.reflect.AccessFlag;
 
 public class ClassFileExercises {
 
+    public static void main(String[] args) throws Exception {
+        ClassFileExercises exercises = new ClassFileExercises();
+        exercises.listarMetodos();
+        exercises.tieneMetodoPublicoEmail();
+    }
+
+    // Ejercicio 1: Listar todos los métodos de una clase del dominio
+    public void listarMetodos() throws IOException {
+        // Ruta al archivo .class compilado
+        Path path = Path.of("target/classes/com/edteam/reservations/model/PassengerDTO.class");
+
+        // Leer el modelo de clase
+        ClassModel model = ClassFile.of().parse(path);
+
+        // Mostrar los nombres de los métodos
+        System.out.println("Métodos de PassengerDTO:");
+        model.methods().forEach(m -> System.out.println(" - " + m.methodName()));
+    }
+
+    // Ejercicio 3: Verificar si `PassengerDTO` tiene un metodo `getEmail` público
+    public void tieneMetodoPublicoEmail() throws IOException {
+        Path path = Path.of("target/classes/com/edteam/reservations/model/PassengerDTO.class");
+
+        ClassModel model = ClassFile.of().parse(path);
+
+        boolean tieneGetEmailPublico = model.methods().stream()
+                .anyMatch(m ->
+                        m.methodName().equals("getEmail") &&
+                                m.flags().has(AccessFlag.PUBLIC)
+                );
+
+        System.out.println("¿PassengerDTO tiene un método público getEmail? " + tieneGetEmailPublico);
+
+    }
 }
