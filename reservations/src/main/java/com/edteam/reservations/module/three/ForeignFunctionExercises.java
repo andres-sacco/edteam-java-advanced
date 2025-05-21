@@ -14,18 +14,16 @@ public class ForeignFunctionExercises {
     // Ejercicio 1: Llamar a `strlen` desde la libc (C)
     public void llamarStrlenC() throws Throwable {
         Linker linker = Linker.nativeLinker();
-        SymbolLookup lookup = linker.defaultLookup(); // Java 22
 
-        // Buscar símbolo 'strlen'
+        SymbolLookup lookup = linker.defaultLookup();
+
         MemorySegment strlenAddr = lookup.find("strlen").orElseThrow();
 
-        // Definir descriptor de la función: size_t strlen(const char *)
         MethodHandle strlen = linker.downcallHandle(
                 strlenAddr,
                 FunctionDescriptor.of(ValueLayout.JAVA_LONG, ValueLayout.ADDRESS)
         );
 
-        // Crear cadena en memoria nativa
         try (Arena arena = Arena.ofConfined()) {
             MemorySegment cStr = arena.allocateFrom("Hola desde Java");
 
@@ -40,17 +38,17 @@ public class ForeignFunctionExercises {
     // Ejercicio 5: Llamar a `getpid` para obtener el ID del proceso
     public void obtenerPID() throws Throwable {
         Linker linker = Linker.nativeLinker();
-        SymbolLookup lookup = Linker.nativeLinker().defaultLookup();
+
+        SymbolLookup lookup = linker.defaultLookup();
 
         var symbol = lookup.find("getpid").orElseThrow();
 
         MethodHandle getpid = linker.downcallHandle(
                 symbol,
-                FunctionDescriptor.of(ValueLayout.JAVA_INT) // retorno: int
+                FunctionDescriptor.of(ValueLayout.JAVA_INT)
         );
 
         int pid = (int) getpid.invoke();
-        System.out.println("PID actual: " + pid);
+        System.out.println("PID: " + pid);
     }
-
 }
