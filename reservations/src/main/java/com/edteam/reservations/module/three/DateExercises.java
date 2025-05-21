@@ -10,20 +10,16 @@ public class DateExercises {
 
         System.out.println("¿Está dentro del horario? " + exercises.estaDentroDelHorario(LocalTime.of(22, 0), LocalTime.of(6, 0), LocalTime.now()));
 
-        ZonedDateTime utc = exercises.convertirAUTC(LocalTime.of(15, 30), ZoneId.of("Europe/Madrid"));
-        System.out.println("15:30 en Madrid equivale a UTC: " + utc);
-
         List<String> zonas = List.of("Europe/Madrid", "America/New_York", "Asia/Tokyo");
         exercises.mostrarZonas(zonas);
+
+        ZonedDateTime utc = exercises.convertirAUTC(LocalTime.of(15, 30), ZoneId.of("Europe/Madrid"));
+        System.out.println("15:30 en Madrid equivale a UTC: " + utc);
     }
 
     // Ejercicio 13: Verificar si un horario local está dentro de una franja válida (LocalTime)
     public boolean estaDentroDelHorario(LocalTime inicio, LocalTime fin, LocalTime actual) {
-        if (inicio.isBefore(fin)) {
-            return !actual.isBefore(inicio) && !actual.isAfter(fin);
-        } else {
-            return !actual.isBefore(inicio) || !actual.isAfter(fin);
-        }
+        return inicio.isBefore(actual) && fin.isAfter(actual);
     }
 
     // Ejercicio 16: Mostrar el tiempo UTC y su equivalente local en múltiples zonas
@@ -42,4 +38,3 @@ public class DateExercises {
         return localZoned.withZoneSameInstant(ZoneOffset.UTC);
     }
 }
-

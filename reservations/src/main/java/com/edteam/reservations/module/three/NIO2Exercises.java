@@ -52,11 +52,9 @@ public class NIO2Exercises {
 
     // Ejercicio 8: Listar todos los archivos .java de un directorio
     public List<Path> listarArchivosJava(Path directorio) throws IOException {
-        try (var stream = Files.walk(directorio)) {
-            return stream
-                    .filter(p -> Files.isRegularFile(p) && p.toString().endsWith(".java"))
+        try(var stream = Files.walk(directorio)) {
+            return stream.filter(p -> p.toString().endsWith(".java"))
                     .toList();
         }
     }
-
 }
